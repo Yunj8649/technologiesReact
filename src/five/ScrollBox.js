@@ -13,18 +13,15 @@ class ScrollBox extends Component {
 	}
 
 	scrollToTop = () => {
-		const { scrollHeight, clientHeight } = this.box;
-		/* 비구조화 할당 문법 사용
-			다음 코드와 같은 의미
-			const scrollHeight = this.box.scrollHeight
-			const clientHeight = this.box.clientHeight
-		*/
-		// this.box.scrollTop = ;
+		this.box.scrollTop = 0;
+	}
+
+	onChangeScroll = () => {
+		const { scrollTop, scrollHeight, clientHeight } = this.box;
+		console.log(scrollTop, scrollHeight, clientHeight)
 	}
 
 	render() {
-		console.log(this.box.scrollHeight)
-
 		const style = {
 			border: '1px solid black',
 			height: '300px',
@@ -43,6 +40,7 @@ class ScrollBox extends Component {
 			<div
 				style={ style }
 				ref={ ref => this.box = ref }
+				onScroll={ this.onChangeScroll }
 			>
 				<div style={ innerStyle } />
 			</div>
